@@ -1,17 +1,23 @@
 import React, { useEffect , useRef} from 'react'
+import spotifyClient from '../../api/playlist';
 import playlistToTxt from '../../api/playlist'
 import Nav from '../../nav/Nav'
 
 
 const Download = () => {
+
+  /* acces token dinamico url */
+  const hash = window.location.hash.substr(1);
+  const hashParams = hash.split('&').filter(param => param.startsWith('access_token='));
+  const UserAccessToken = hashParams[0].split('=')[1];
   
+
+  /* funcion que llama a playList.js y envia los parametros (access Token y la playlist que se le envia por input) */
   const handleClick = (e) => {
     e.preventDefault()
 
     const playlistLink = e.target.inputPlaylist.value;
-
-    playlistToTxt( playlistLink );
-
+    spotifyClient( playlistLink , UserAccessToken);
   }
 
   return (

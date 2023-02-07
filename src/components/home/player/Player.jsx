@@ -1,4 +1,4 @@
-import React, { useEffect , useState, useRef } from 'react'
+import React, { useEffect } from 'react'
 import Nav from '../../nav/Nav'
 import play from './play'
 
@@ -7,6 +7,8 @@ const Player = () => {
   
 
   useEffect(() => {
+
+
     window.ga = window.ga || function() {
       (ga.q = ga.q || []).push(arguments)
     };
@@ -15,6 +17,8 @@ const Player = () => {
     ga('send', 'pageview');
 
     play()
+
+
   },[])
 
   return (
