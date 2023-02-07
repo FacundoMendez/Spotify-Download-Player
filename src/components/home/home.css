@@ -5,6 +5,8 @@
     overflow: hidden;
 }
 
+/* download */
+
 .boxDownload{
     position: relative;
     display: flex;
@@ -51,7 +53,7 @@
 
 
 
-/* input */
+/* input download*/
 
 .box_contact_main{
     display: flex;
@@ -127,6 +129,18 @@
 }
 
 
+
+
+
+/* player */
+
+#content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .canvas_banner{
     position: fixed;
     width: 100%;
@@ -135,3 +149,51 @@
     left: 0;
     z-index: -1;
 }
+
+/* file box */
+
+.file {
+  position: absolute;
+  display: inline-block;
+  top: 8rem;
+  left: 2rem;
+  cursor: pointer;
+}
+
+.file::before {
+  background-color:  #29d666;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  content: 'Seleccionar Archivo'; /* testo por defecto */
+  position: absolute;
+  padding: 1rem;
+  font-family: "ppF" ;
+  font-size: 2.7rem;
+  color: white;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: 1000;
+}
+
+.file input[type="file"] {
+  opacity: 0;
+  width: 200px;
+  height: 32px;
+  display: inline-block;
+}
+
+
+#audio{
+  position: absolute;
+  bottom: .5rem;
+  width: 98%;
+}
+
+audio::-webkit-media-controls-panel{
+    background-color: #1b1b1b;
+}
+

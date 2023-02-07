@@ -13,6 +13,7 @@ const Player = () => {
     ga.l = +new Date;
     ga('create', 'UA-105392568-1', 'auto');
     ga('send', 'pageview');
+
     play()
   },[])
 
@@ -23,7 +24,7 @@ const Player = () => {
     <div id="content">
       <canvas className='canvas_banner' id="canvas_banner"></canvas>
 
-      <label htmlFor="thefile" className="file"> Choose an audio file
+      <label htmlFor="thefile" className="file" id='file'> Choose an audio file
         <input type="file" id="thefile" accept="audio/*" />
       </label>
 
