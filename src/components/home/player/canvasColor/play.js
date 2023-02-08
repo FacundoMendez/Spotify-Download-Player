@@ -182,59 +182,6 @@ const play = () => {
     }
     
     
-    function captureScreenshot() {
-      colorProgram.bind();
-      gl.uniform4f(colorProgram.uniforms.color, 0, 0, 0, 1);
-      blit(density.write.fbo);
-    
-      render(density.write.fbo);
-      gl.bindFramebuffer(gl.FRAMEBUFFER, density.write.fbo);
-    
-      let length = dyeWidth * dyeHeight * 4;
-      let pixels = new Float32Array(length);
-      gl.readPixels(0, 0, dyeWidth, dyeHeight, gl.RGBA, gl.FLOAT, pixels);
-    
-      let newPixels = new Uint8Array(length);
-    
-      let id = 0;
-      for (let i = dyeHeight - 1; i >= 0; i--) {
-        for (let j = 0; j < dyeWidth; j++) {
-          let nid = i * dyeWidth * 4 + j * 4;
-          newPixels[nid + 0] = clamp01(pixels[id + 0]) * 255;
-          newPixels[nid + 1] = clamp01(pixels[id + 1]) * 255;
-          newPixels[nid + 2] = clamp01(pixels[id + 2]) * 255;
-          newPixels[nid + 3] = clamp01(pixels[id + 3]) * 255;
-          id += 4;
-        }
-      }
-    
-      let captureCanvas = document.createElement("canvas");
-      let ctx = captureCanvas.getContext("2d");
-      captureCanvas.width = dyeWidth;
-      captureCanvas.height = dyeHeight;
-    
-      let imageData = ctx.createImageData(dyeWidth, dyeHeight);
-      imageData.data.set(newPixels);
-      ctx.putImageData(imageData, 0, 0);
-      let datauri = captureCanvas.toDataURL();
-    
-      downloadURI("fluid.png", datauri);
-    
-      URL.revokeObjectURL(datauri);
-    }
-    
-    function clamp01(input) {
-      return Math.min(Math.max(input, 0), 1);
-    }
-    
-    function downloadURI(filename, uri) {
-      let link = document.createElement("a");
-      link.download = filename;
-      link.href = uri;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
     
     function isMobile() {
       return /Mobi|Android/i.test(navigator.userAgent);
@@ -1425,7 +1372,7 @@ const play = () => {
       pointers[0].y = e.offsetY;
     });
     
-    /* canvas.addEventListener('touchmove', e => {
+    canvas.addEventListener('touchmove', e => {
         e.preventDefault();
         const touches = e.targetTouches;
         for (let i = 0; i < touches.length; i++) {
@@ -1436,14 +1383,14 @@ const play = () => {
             pointer.x = touches[i].pageX;
             pointer.y = touches[i].pageY;
         }
-    }, false); */
+    }, false);
     
     canvas.addEventListener("mousedown", () => {
       pointers[0].down = true;
       pointers[0].color = generateColor();
     });
     
-    /* canvas.addEventListener('touchstart', e => {
+    canvas.addEventListener('touchstart', e => {
         e.preventDefault();
         const touches = e.targetTouches;
         for (let i = 0; i < touches.length; i++) {
@@ -1456,26 +1403,29 @@ const play = () => {
             pointers[i].y = touches[i].pageY;
             pointers[i].color = generateColor();
         }
-    }); */
+    });
     
     /* window.addEventListener('mouseup', () => {
         pointers[0].down = false;
     }); */
-    /* 
+    
     window.addEventListener('touchend', e => {
         const touches = e.changedTouches;
         for (let i = 0; i < touches.length; i++)
             for (let j = 0; j < pointers.length; j++)
                 if (touches[i].identifier == pointers[j].id)
                     pointers[j].down = false;
-    }); */
-    /* 
+    });
+
+
+    /* touch aaaaaaaaaaaaaaaaaaaaa */
+    
     window.addEventListener('keydown', e => {
         if (e.code === 'KeyP')
             config.PAUSED = !config.PAUSED;
         if (e.key === ' ')
             splatStack.push(parseInt(Math.random() * 20) + 5);
-    }); */
+    });
     
     function generateColor() {
       let c = HSVtoRGB(Math.random(), 1.0, 1.0);
