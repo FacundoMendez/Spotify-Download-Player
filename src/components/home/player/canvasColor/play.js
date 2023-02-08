@@ -181,135 +181,6 @@ const play = () => {
       return true;
     }
     
-    function startGUI() {
-      var gui = new dat.GUI({
-        width: 300
-      });
-      gui
-        .add(config, "SIM_RESOLUTION", {
-          "32": 32,
-          "64": 64,
-          "128": 128,
-          "256": 256
-        })
-        .name("sim resolution")
-        .onFinishChange(initFramebuffers);
-      gui
-        .add(config, "DYE_RESOLUTION", {
-          "128": 128,
-          "256": 256,
-          "512": 512,
-          "1024": 1024
-        })
-        .name("dye resolution")
-        .onFinishChange(initFramebuffers);
-      gui.add(config, "DENSITY_DISSIPATION", 0.9, 1.0).name("density diffusion");
-      gui.add(config, "VELOCITY_DISSIPATION", 0.9, 1.0).name("velocity diffusion");
-      gui.add(config, "PRESSURE_DISSIPATION", 0.0, 1.0).name("pressure diffusion");
-      gui.add(config, "CURL", 0, 50).name("vorticity").step(1);
-      gui.add(config, "SPLAT_RADIUS", 0.01, 1.0).name("splat radius");
-      gui.add(config, "SHADING").name("shading");
-      gui.add(config, "COLORFUL").name("colorful");
-      gui.add(config, "PAUSED").name("paused").listen();
-    
-      gui
-        .add(
-          {
-            fun: () => {
-              splatStack.push(parseInt(Math.random() * 20) + 5);
-            }
-          },
-          "fun"
-        )
-        .name("Random splats");
-    
-      let bloomFolder = gui.addFolder("Bloom");
-      bloomFolder.add(config, "BLOOM").name("enabled");
-      bloomFolder.add(config, "BLOOM_INTENSITY", 0.1, 2.0).name("intensity");
-      bloomFolder.add(config, "BLOOM_THRESHOLD", 0.0, 1.0).name("threshold");
-    
-      let captureFolder = gui.addFolder("Capture");
-      captureFolder.addColor(config, "BACK_COLOR").name("background color");
-      captureFolder.add(config, "TRANSPARENT").name("transparent");
-      captureFolder
-        .add(
-          {
-            fun: captureScreenshot
-          },
-          "fun"
-        )
-        .name("take screenshot");
-    
-      let github = gui
-        .add(
-          {
-            fun: () => {
-              window.open("https://github.com/PavelDoGreat/WebGL-Fluid-Simulation");
-              ga("send", "event", "link button", "github");
-            }
-          },
-          "fun"
-        )
-        .name("Github");
-      github.__li.className = "cr function bigFont";
-      github.__li.style.borderLeft = "3px solid #8C8C8C";
-      let githubIcon = document.createElement("span");
-      github.domElement.parentElement.appendChild(githubIcon);
-      githubIcon.className = "icon github";
-    
-      let twitter = gui
-        .add(
-          {
-            fun: () => {
-              ga("send", "event", "link button", "twitter");
-              window.open("https://twitter.com/PavelDoGreat");
-            }
-          },
-          "fun"
-        )
-        .name("Twitter");
-      twitter.__li.className = "cr function bigFont";
-      twitter.__li.style.borderLeft = "3px solid #8C8C8C";
-      let twitterIcon = document.createElement("span");
-      twitter.domElement.parentElement.appendChild(twitterIcon);
-      twitterIcon.className = "icon twitter";
-    
-      let discord = gui
-        .add(
-          {
-            fun: () => {
-              ga("send", "event", "link button", "discord");
-              window.open("https://discordapp.com/invite/CeqZDDE");
-            }
-          },
-          "fun"
-        )
-        .name("Discord");
-      discord.__li.className = "cr function bigFont";
-      discord.__li.style.borderLeft = "3px solid #8C8C8C";
-      let discordIcon = document.createElement("span");
-      discord.domElement.parentElement.appendChild(discordIcon);
-      discordIcon.className = "icon discord";
-    
-      let app = gui
-        .add(
-          {
-            fun: () => {
-              ga("send", "event", "link button", "app");
-              window.open("http://onelink.to/5b58bn");
-            }
-          },
-          "fun"
-        )
-        .name("Check out new improved version");
-      app.__li.className = "cr function appBigFont";
-      app.__li.style.borderLeft = "3px solid #00FF7F";
-      let appIcon = document.createElement("span");
-      app.domElement.parentElement.appendChild(appIcon);
-      appIcon.className = "icon app";
-    
-      if (isMobile()) gui.close();
-    }
     
     function captureScreenshot() {
       colorProgram.bind();
@@ -948,7 +819,7 @@ const play = () => {
     let pressure;
     let bloom;
     
-    let ditheringTexture = createTextureAsync("LDR_RGB1_0.png");
+    let ditheringTexture = createTextureAsync("");
     
     const clearProgram = new GLProgram(baseVertexShader, clearShader);
     const colorProgram = new GLProgram(baseVertexShader, colorShader);
