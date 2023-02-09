@@ -1,6 +1,5 @@
-import React, { useEffect , useRef} from 'react'
+import React from 'react'
 import spotifyClient from '../../api/playlist';
-import playlistToTxt from '../../api/playlist'
 import Nav from '../../nav/Nav'
 
 
