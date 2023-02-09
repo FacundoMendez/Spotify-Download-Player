@@ -1,17 +1,17 @@
-const play = () => {
+const play = (playAudio) => {
     const canvas = document.getElementsByTagName("canvas")[0];
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.clientHeight;
     
     let config = {
-      SIM_RESOLUTION: 128,
-      DYE_RESOLUTION: 512,
-      DENSITY_DISSIPATION: 0.97,
+      SIM_RESOLUTION: 148,
+      DYE_RESOLUTION: 812,
+      DENSITY_DISSIPATION: .97,
       VELOCITY_DISSIPATION: 0.98,
       PRESSURE_DISSIPATION: 0.8,
       PRESSURE_ITERATIONS: 20,
       CURL: 30,
-      SPLAT_RADIUS: 0.5,
+      SPLAT_RADIUS: 0.5, /* tamaño */
       SHADING: false,
       COLORFUL: false,
       PAUSED: false,
@@ -24,35 +24,11 @@ const play = () => {
       BLOOM: true,
       BLOOM_ITERATIONS: 8,
       BLOOM_RESOLUTION: 256,
-      BLOOM_INTENSITY: 0.8,
+      BLOOM_INTENSITY: 0.5,
       BLOOM_THRESHOLD: 0.6,
       BLOOM_SOFT_KNEE: 0.7
     };
-    
-    function color_hover(e) {
-      pointers[0].down = true;
-      pointers[0].color = generateColor();
-      pointers[0].moved = pointers[0].down;
-      pointers[0].dx = (e.clientX - pointers[0].x) * 5.0;
-      pointers[0].dy = (e.clientY - pointers[0].y) * 5.0;
-      pointers[0].x = e.clientX;
-      pointers[0].y = e.clientY;
-    }
-    
-    function color_hover_with_XY(e, X, Y, speed) {
-      speed = speed || 50;
-      var i = 0;
-      while (i != speed) {
-        pointers[0].down = true;
-        pointers[0].color = generateColor();
-        pointers[0].moved = pointers[0].down;
-        pointers[0].dx = (e.clientX + X - pointers[0].x) * 5.0;
-        pointers[0].dy = (e.clientY + Y - pointers[0].y) * 5.0;
-        pointers[0].x = e.clientX + X;
-        pointers[0].y = e.clientY + Y;
-        i++;
-      }
-    }
+
     
     function pointerPrototype() {
       this.id = -1;
@@ -1363,7 +1339,9 @@ const play = () => {
         initFramebuffers();
       }
     }
-    
+
+    pointers[0].down = true;
+    pointers[0].color = generateColor();
     canvas.addEventListener("mousemove", (e) => {
       pointers[0].moved = pointers[0].down;
       pointers[0].dx = (e.offsetX - pointers[0].x) * 5.0;
@@ -1419,13 +1397,12 @@ const play = () => {
 
 
     /* touch aaaaaaaaaaaaaaaaaaaaa */
-    
-    window.addEventListener('keydown', e => {
-        if (e.code === 'KeyP')
-            config.PAUSED = !config.PAUSED;
-        if (e.key === ' ')
-            splatStack.push(parseInt(Math.random() * 20) + 5);
-    });
+    if(playAudio){
+      setInterval(() => {
+        splatStack.push(parseInt(Math.random() * 20) + 7); 
+      }, 2500);
+    }
+ 
     
     function generateColor() {
       let c = HSVtoRGB(Math.random(), 1.0, 1.0);
