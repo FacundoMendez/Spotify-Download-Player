@@ -5,7 +5,7 @@ import "./player.css"
 import Prev from './buttons/Prev'
 import Next from './buttons/Next'
 import StartPause from './buttons/StartPause'
-import NavMusic from './buttons/NavMusic'
+import NavMusic from './buttons/navMusic/NavMusicIcon'
 import Volumen from './buttons/Volumen'
 
 
@@ -22,6 +22,7 @@ const Player = () => {
     }
     setSongs(songsArray);
   };
+
 
 
 
@@ -52,7 +53,7 @@ const Player = () => {
           <StartPause songs={songs} currentSongIndex={currentSongIndex} setCurrentSongIndex={setCurrentSongIndex} />
           <Next songs={songs} currentSongIndex={currentSongIndex}  setCurrentSongIndex = {setCurrentSongIndex} />
           <Volumen/>
-          <NavMusic/>
+          <NavMusic songs = {songs} currentSongIndex= {currentSongIndex} setCurrentSongIndex = {setCurrentSongIndex}/> 
 
         </div>
    
