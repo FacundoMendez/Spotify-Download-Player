@@ -20,28 +20,24 @@ const StartPause = ({songs , currentSongIndex  }) => {
     const playSong = () => {
       if (songs.length > 0) {
         const song = songs[currentSongIndex];
-        const url = URL.createObjectURL(song.file);
-        audio.src = url;
-
-        if (playAudio) {
-          audio.play().catch((error) => {
-            console.error(error);
-          });
+        if (song && song.file) {
+          const url = URL.createObjectURL(song.file);
+          audio.src = url;
+    
+          if (playAudio) {
+            audio.play().catch((error) => {
+              console.error(error);
+            });
+          }
         }
       }
     };
 
 
+
     /* canvas */
 
   const canvasFunc = () => {
-    window.ga = window.ga || function() {
-      (ga.q = ga.q || []).push(arguments)
-    };
-    ga.l = +new Date;
-    ga('create', 'UA-105392568-1', 'auto');
-    ga('send', 'pageview');
-    
     CanvasColor(playAudio)
   }
 

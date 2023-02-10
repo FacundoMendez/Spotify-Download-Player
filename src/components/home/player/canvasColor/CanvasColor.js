@@ -99,10 +99,7 @@ const CanvasColor = (playAudio) => {
         formatR = getSupportedFormat(gl, gl.RGBA, gl.RGBA, halfFloatTexType);
       }
     
-      if (formatRGBA == null)
-        ga("send", "event", isWebGL2 ? "webgl2" : "webgl", "not supported");
-      else ga("send", "event", isWebGL2 ? "webgl2" : "webgl", "supported");
-    
+
       return {
         gl,
         ext: {
