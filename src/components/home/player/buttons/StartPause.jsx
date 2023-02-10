@@ -7,48 +7,49 @@ const StartPause = ({songs , currentSongIndex  }) => {
 
   const audio = document.getElementById("audio")
 
-  /* pause / start song */
-  const handlePlayPause = () => {
-    if (audio.paused) {
-      audio.play();
-    } else {
-      audio.pause();
-    }
-    setPlayAudio(!playAudio);
-  };
+    /* pause / start song */
+    const handlePlayPause = () => {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+      setPlayAudio(!playAudio);
+    };
 
-  const playSong = () => {
-    if (songs.length > 0) {
-      const song = songs[currentSongIndex];
-      const url = URL.createObjectURL(song.file);
-      audio.src = url;
-      audio.play();
-    }
-  };
+    const playSong = () => {
+      if (songs.length > 0) {
+        const song = songs[currentSongIndex];
+        const url = URL.createObjectURL(song.file);
+        audio.src = url;
 
-  if (playAudio) {
-    playSong();
-  }
+        if (playAudio) {
+          audio.play().catch((error) => {
+            console.error(error);
+          });
+        }
+      }
+    };
 
-  useEffect(() => {
 
     /* canvas */
 
-    const canvasFunc = () => {
-      window.ga = window.ga || function() {
-        (ga.q = ga.q || []).push(arguments)
-      };
-      ga.l = +new Date;
-      ga('create', 'UA-105392568-1', 'auto');
-      ga('send', 'pageview');
-      
-      CanvasColor(playAudio)
-    }
-     
+  const canvasFunc = () => {
+    window.ga = window.ga || function() {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'UA-105392568-1', 'auto');
+    ga('send', 'pageview');
+    
+    CanvasColor(playAudio)
+  }
+
+  useEffect(() => {
+    playSong()
     canvasFunc()
-
-
-  },[playAudio ])
+  },[songs, currentSongIndex, playAudio])
+  
     
   return (
     <div className="pause-control control" onClick={handlePlayPause}>

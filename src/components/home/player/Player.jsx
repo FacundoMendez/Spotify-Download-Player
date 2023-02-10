@@ -1,20 +1,16 @@
-import React, { useEffect , useState} from 'react'
+import React, { useState} from 'react'
 import Nav from '../../nav/Nav'
-import CanvasColor from './canvasColor/CanvasColor'
 import "./player.css"
 
 import Prev from './buttons/Prev'
 import Next from './buttons/Next'
 import StartPause from './buttons/StartPause'
 import NavMusic from './buttons/NavMusic'
+import Volumen from './buttons/Volumen'
 
 
 const Player = () => {   
   
-
-
-
-
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [songs, setSongs] = useState([]);
 
@@ -26,20 +22,6 @@ const Player = () => {
     }
     setSongs(songsArray);
   };
-
-  console.log(songs)
-  
-
-
-
-  useEffect(() => {
-
-
-
-
-
-  },[])
-
 
 
 
@@ -67,11 +49,13 @@ const Player = () => {
         
         <div className="boxControls">
           <Prev songs={songs} currentSongIndex={currentSongIndex}  setCurrentSongIndex = {setCurrentSongIndex}/>
-          <StartPause songs={songs} currentSongIndex={currentSongIndex} />
+          <StartPause songs={songs} currentSongIndex={currentSongIndex} setCurrentSongIndex={setCurrentSongIndex} />
           <Next songs={songs} currentSongIndex={currentSongIndex}  setCurrentSongIndex = {setCurrentSongIndex} />
-        </div>
+          <Volumen/>
+          <NavMusic/>
 
-        <NavMusic/>
+        </div>
+   
       </div>
     </div>
     </>
