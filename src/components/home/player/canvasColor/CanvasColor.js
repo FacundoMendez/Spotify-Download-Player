@@ -1397,7 +1397,7 @@ const CanvasColor = (playAudio) => {
     if(playAudio){
       setInterval(() => {
         splatStack.push(parseInt(Math.random() * 20) + 7); 
-      }, 2500);
+      }, 2000);
     }
  
     

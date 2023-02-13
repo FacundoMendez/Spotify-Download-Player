@@ -1,7 +1,7 @@
 import React, { useEffect , useState} from 'react'
 import CanvasColor from '../canvasColor/CanvasColor'
 
-const StartPause = ({songs , currentSongIndex  }) => {
+const StartPause = ({songs , currentSongIndex , setCurrentSongIndex }) => {
      /* control de start/pause */
   const [playAudio , setPlayAudio] = useState(false)
 
@@ -33,7 +33,9 @@ const StartPause = ({songs , currentSongIndex  }) => {
       }
     };
 
-
+    const handleEnded = () => {
+      setCurrentSongIndex((currentSongIndex + 1) % songs.length);
+    };
 
     /* canvas */
 
@@ -44,6 +46,17 @@ const StartPause = ({songs , currentSongIndex  }) => {
   useEffect(() => {
     playSong()
     canvasFunc()
+    if(audio){
+      audio.addEventListener("ended", handleEnded);
+    }
+
+    return () => {
+      if(audio){
+        audio.removeEventListener("ended", handleEnded);
+
+      }
+    };
+ 
   },[songs, currentSongIndex, playAudio])
   
     

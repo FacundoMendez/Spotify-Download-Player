@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import Nav from '../../nav/Nav'
 import "./player.css"
 
@@ -7,12 +7,14 @@ import Next from './buttons/Next'
 import StartPause from './buttons/StartPause'
 import NavMusic from './buttons/navMusic/NavMusicIcon'
 import Volumen from './buttons/Volumen'
+import ProgressBar from './buttons/ProgressBar'
 
 
 const Player = () => {   
   
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [songs, setSongs] = useState([]);
+
 
   const handleFiles = (event) => {
     const files = event.target.files;
@@ -22,7 +24,6 @@ const Player = () => {
     }
     setSongs(songsArray);
   };
-
 
 
 
@@ -43,7 +44,7 @@ const Player = () => {
           onChange={handleFiles}
         />
       </label>
-      <audio preload="auto" id="audio" />
+      <audio  preload="auto" id="audio" />
 
 
       <div className="reproductor">
@@ -53,7 +54,8 @@ const Player = () => {
           <StartPause songs={songs} currentSongIndex={currentSongIndex} setCurrentSongIndex={setCurrentSongIndex} />
           <Next songs={songs} currentSongIndex={currentSongIndex}  setCurrentSongIndex = {setCurrentSongIndex} />
           <Volumen/>
-          <NavMusic songs = {songs} currentSongIndex= {currentSongIndex} setCurrentSongIndex = {setCurrentSongIndex}/> 
+          <NavMusic songs = {songs} setCurrentSongIndex = {setCurrentSongIndex}/> 
+          <ProgressBar />
 
         </div>
    
