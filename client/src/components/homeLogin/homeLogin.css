@@ -1,0 +1,103 @@
+.homeLogin{
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+  
+}
+
+
+.containerTextlogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    gap: 4rem;
+    top: -18rem;
+
+}
+
+.titleHomeLogin{
+    font-family: "ppF" ;
+    font-size: 7rem;
+    color: white;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    transform: matrix(1.15,0,0,1.25,0,0);
+    text-align: center;
+    z-index: 1000;
+}
+
+.titleHomeLogin strong{
+    color: #29d666;
+    filter: brightness(120%) drop-shadow(0 0 1.2px #29d666);
+}
+
+.buttonStarted{
+    position: relative;
+    padding: 1.5rem 2rem;
+    border: 3px solid #29d666;
+    border-radius: 30px;
+    color: white;
+    letter-spacing: 1px;
+    font-family: "ppF" ;
+    font-size: 3.6rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.103);
+    backdrop-filter: blur(10px);
+    text-shadow: 0 3px 4px rgba(15, 17, 16, 0.671);
+    transition: all .5s ease;
+
+}
+
+.buttonStarted:hover{
+    color: rgb(19, 19, 19);
+    text-shadow: 0 2px 4px rgba(88, 88, 88, 0.671);
+    filter: drop-shadow(0 0 7px #29d666);
+    background-color: #29d666;
+    transition: all .8s ease;
+}
+
+.buttonStarted strong{
+    margin-top: .5rem;
+}
+
+/* cirlce blur */
+
+.flare{
+    width: 50vw;
+    height: 40vw;
+    position: absolute;
+    border-radius: 100%;
+    top: 138%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    background: rgb(0, 255, 200);
+    filter: blur(calc(45vw * 0.28));
+    z-index: -1;
+    animation: flareEffect 5000ms linear infinite;
+}
+
+
+@keyframes flareEffect {
+    0%{
+        height: 40vw;
+    }
+    50%{
+        height: 45vw;
+        filter: blur(calc(55vw * 0.28));
+
+    }
+    100%{
+        height: 40vw;
+    }
+    
+}
