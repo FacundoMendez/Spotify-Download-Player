@@ -38,8 +38,8 @@ async function playlistToTxt(playlistLink, accessToken) {
 
 async function downloadFromYT(videoURL){
     
-    const info = await ytdl.getInfo('7wNb0pHyGuI')
-    console.log(info)
+    ytdl(videoURL)
+        .pipe(fs.createWriteStream('video.mp4'));
     
   
     
