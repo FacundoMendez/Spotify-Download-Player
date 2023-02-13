@@ -1,6 +1,7 @@
 import React from 'react'
 import spotifyClient from '../../api/playlist';
 import Nav from '../../nav/Nav'
+import axios from "axios";
 
 
 const Download = () => {
@@ -16,7 +17,20 @@ const Download = () => {
     e.preventDefault()
 
     const playlistLink = e.target.inputPlaylist.value;
-    spotifyClient( playlistLink , UserAccessToken);
+    //spotifyClient( playlistLink , UserAccessToken);
+    
+    ;
+
+    axios.post("http://localhost:3001/playlist",
+      { 
+        link: playlistLink, 
+        token: UserAccessToken
+      })
+      .then(function (response) {
+        //handle 
+        console.log(response.data);
+      })
+
   }
 
   return (
