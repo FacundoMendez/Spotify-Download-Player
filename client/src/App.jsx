@@ -2,7 +2,7 @@ import './App.css'
 import { BrowserRouter , Route, Routes } from 'react-router-dom'
 import SpotifyLogin from './components/api/SpotifyLogin'
 import Home from './components/home/Home';
-import HomeLogin from './components/homeLogin/HomeLogin';
+import HomeLogin from './components/login/Login';
 import Player from './components/home/player/Player';
 
 
