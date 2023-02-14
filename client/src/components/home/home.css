@@ -55,6 +55,15 @@
 
 /* input download*/
 
+.boxForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 4rem;
+    position: relative;
+    gap: 1rem;
+}
+
 .box_contact_main{
     display: flex;
     justify-content: center;
@@ -62,12 +71,11 @@
     flex-direction: row;
     gap: 2rem;
     position: relative;
-    width: 95rem;
-    top: 4rem;
+    left: -5rem;
 }
 
 .box_contact_main input{
-    width: 95rem;
+    width: 85rem;
     height: 6rem;
     padding: 2rem;
     border-radius: 8px;
@@ -82,9 +90,10 @@
     transition: all .8s ease;
     background-color: rgb(12, 12, 12);
     color: white;
+    padding-right: 12rem;
 }
 
-.box_contact_main input:hover{
+.box_contact_main input:hover, #typeSong:hover{
     box-shadow:  0 0 20px #29d666;
     transition: all .8s ease;
 }
@@ -113,7 +122,7 @@
     font-family: "ppF" ;
     padding: 1rem 2rem;
     position: absolute;
-    right: 0rem;
+    right: -10.5rem;
     background-color: black;
     cursor: pointer;
     text-shadow:  0 0 .3rem rgba(178, 255, 163, 0.699);
@@ -130,6 +139,36 @@
 
 
 
+/* slect tipe song */
 
+#typeSong{
+    width:10rem;
+    height: 6rem;
+    border-radius: 8px;
+    border: 2px ridge #29d666;
+    font-size:2.5rem;
+    letter-spacing: 1px;
+    font-family: "ppF" ;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: relative;
+    transition: all .8s ease;
+    background-color: rgb(12, 12, 12);
+    color: white;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    padding-left: 1.5rem;
+    padding-right: .5rem;
+    appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+.option{
+    padding: 2rem 0 ;
+    color: #06ff97;
+}
 
 

@@ -8,7 +8,6 @@ const Home = () => {
   return (
     <div className='home'>
         <Download/>
-
         <div className="flare"></div>
     </div>
   )

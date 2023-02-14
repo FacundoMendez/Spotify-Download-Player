@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import NavMusicViewport from './NavMusicViewport'
 
-const NavMusic = ({songs , setCurrentSongIndex}) => {
+const NavMusic = ({songs , setCurrentSongIndex }) => {
 
   const [activeNavMusic , setActiveNavMusic] = useState(false)
 

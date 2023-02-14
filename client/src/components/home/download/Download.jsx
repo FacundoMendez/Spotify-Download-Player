@@ -1,7 +1,6 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Nav from '../../nav/Nav'
 import axios from "axios";
-
 
 const Download = () => {
 
@@ -9,9 +8,22 @@ const Download = () => {
   const hash = window.location.hash.substr(1);
   const hashParams = hash.split('&').filter(param => param.startsWith('access_token='));
   const UserAccessToken = hashParams[0].split('=')[1];
-  
+
+
+
+  /* recuperar el tipo de archivo a descargar mp3 / wave */
+
+
+  const [typeSong, setTypeSong] = useState("");  // => typeSong contiene el tipo de archivo
+
+  const handleChange = event => {
+    setTypeSong(event.target.value);
+  };
+
+
 
   /* funcion que llama a playList.js y envia los parametros (access Token y la playlist que se le envia por input) */
+
   const handleClick = (e) => {
     e.preventDefault()
 
@@ -30,6 +42,7 @@ const Download = () => {
         console.log(response.data);
       })
 
+
   }
 
   return (
@@ -39,15 +52,21 @@ const Download = () => {
       <h2>Your PlayList <span>/</span>  song from <strong>Spotify</strong> </h2>
       <p>Paste the URL of your Spotify PlayList / song and start your download</p>
     
+      <div className="boxForm">
       <form className="box_contact_main" onSubmit={(handleClick)}>
-        <input id='playlistId' name='inputPlaylist'  type="text" required placeholder='url' />
-      
-        <button className="sendContact_main" type='submit' >
-            Send
-        </button>
-      </form>
+          <input id='playlistId' name='inputPlaylist'  type="text" required placeholder='url' />
+        
+          <select name="typeSong" id="typeSong" value={typeSong} onChange={handleChange}>
+            <option className='option' value="mp3">mp3</option>
+            <option className='option' value="wave">wave</option>
+          </select>
 
-    {/*   <ZipSongs/> */}
+          <button className="sendContact_main" type='submit' >
+              Send
+          </button>
+        </form>
+    
+      </div>
     </div>
     </>
 

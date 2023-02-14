@@ -13,12 +13,9 @@ const NavMusicViewport = ({songs , setCurrentSongIndex}) => {
             {
               songs.map((song, index) => {
                 return (
-                  <li
-                    key={index}
-                    className="songsList"
-                    onClick={() => handleSongClick(index)}
-                  >
+                  <li key={index} className="songsList" onClick={() => handleSongClick(index)}>
                     {song.name}
+                   <p className='durationSong'>{song.duration}</p>
                   </li>
                 );
               })

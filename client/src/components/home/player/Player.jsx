@@ -20,12 +20,19 @@ const Player = () => {
     const files = event.target.files;
     const songsArray = [];
     for (let i = 0; i < files.length; i++) {
-      songsArray.push({ name: files[i].name, file: files[i] });
+      const audio = new Audio();
+      audio.src = URL.createObjectURL(files[i]);
+      audio.addEventListener("loadedmetadata", () => {
+        let totalMinutes = Math.floor(audio.duration / 60);
+        let totalSeconds = Math.floor(audio.duration % 60);
+        let formattedDuration = audio.duration ? `${totalMinutes}:${totalSeconds < 10 ? "0" + totalSeconds : totalSeconds}` : "0:00";
+        songsArray.push({ name: files[i].name, file: files[i], duration: formattedDuration });
+        if (songsArray.length === files.length) {
+          setSongs(songsArray);
+        }
+      });
     }
-    setSongs(songsArray);
   };
-
-
 
   return (
     <>
@@ -53,10 +60,9 @@ const Player = () => {
           <Prev songs={songs} currentSongIndex={currentSongIndex}  setCurrentSongIndex = {setCurrentSongIndex}/>
           <StartPause songs={songs} currentSongIndex={currentSongIndex} setCurrentSongIndex={setCurrentSongIndex} />
           <Next songs={songs} currentSongIndex={currentSongIndex}  setCurrentSongIndex = {setCurrentSongIndex} />
-          <Volumen/>
+          <Volumen />
           <NavMusic songs = {songs} setCurrentSongIndex = {setCurrentSongIndex}/> 
           <ProgressBar />
-
         </div>
    
       </div>

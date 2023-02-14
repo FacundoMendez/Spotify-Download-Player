@@ -20,8 +20,6 @@ const obtainPlaylist = async (req, res = response) => {
 const ytDownload = async (req, res = response) => {
     
     const info = await downloadFromYT(req.body.link);
-
-    
     
     res.json({
         msg: 'descargado',
