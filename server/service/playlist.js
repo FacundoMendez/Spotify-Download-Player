@@ -1,7 +1,8 @@
 
+const fs = require('fs');
 const axios = require('axios') 
 const ytdl = require('ytdl-core');
-const fs = require('fs');
+const ytsr = require('yt-search')
 
 
 
@@ -26,35 +27,46 @@ async function playlistToTxt(playlistLink, accessToken) {
     const tracks = await getPlaylistTracksSP(accessToken, playlistId);
 
     let songNames = [];
-    for (const track of tracks) {
+    for (let track of tracks) {
         songNames.push(`${track.track.name} - ${track.track.artists[0].name}`);
     }
 
-    const songsText = songNames.join("\n");
+    // const songsText = songNames.join("\n");
     
     return songNames;
 
 }
 
-async function downloadFromYT(videoURL){
+async function downloadSongFromYT(videoURL){       
     
-    const options = {filter: "audioonly", quality: "highestaudio"}
-    let stream = ytdl(videoURL, options);
-    let fileStream = fs.createWriteStream('audio.mp3');
-    stream.pipe(fileStream);
+    ytdl.getBasicInfo(videoURL)
+        .then(info => {
+            // console.log(videoURL);
+            const options = {filter: "audioonly", quality: "highestaudio"}
+            const stream = ytdl(videoURL, options);
+            const title = info.videoDetails.title.replace(/[&/#,+()$~%.'":*?<>{}|]/g, ' - ');
+            // console.log(title.replace(/[&/#,+()$~%.'":*?<>{}|]/g, '-'));
+            const fileStream = fs.createWriteStream( `./downloads/${title}.mp3`);
+            stream.pipe(fileStream);    
 
-    stream.on('progress', (chunkLength, downloaded, total) => {
-        console.log(`${downloaded}/${total} (${(downloaded/total*100).toFixed(2)}%)`);
-      });
-    //const videoId = ytdl.getVideoID(videoURL);
-    // const options = {filter: "audioonly", quality: "highestaudio"}
-    // const info = await ytdl.getInfo(videoURL)
+        })
+        .catch(err => {
+          console.error('Error getting video info:', err);
+        });
+  
+}
+
+async function getVideoURL( songName ){
+
+    const info = await ytsr( songName );
+    const url = info.all[0].url;
+    return url;
     
 }
 
     
 module.exports = {
-    playlistToTxt, downloadFromYT
+    playlistToTxt, downloadSongFromYT, getVideoURL
 };
 
 

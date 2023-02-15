@@ -1,4 +1,4 @@
-const { obtainPlaylist, ytDownload } = require("./controllers/playList_controller")
+const { downloadPlaylist, ytDownload, ytSearch } = require("./controllers/playList_controller")
 let cors = require("cors");
 
 const express = require("express");
@@ -16,9 +16,11 @@ app.get("*", function(req, res) {
 app.use(express.json());
 app.use(cors());
 
-app.post('/playlist', obtainPlaylist);
+app.post('/playlist', downloadPlaylist);
 
 app.post('/ytdown', ytDownload);
+
+app.post('/ytsearch', ytSearch);
 
 
 

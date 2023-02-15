@@ -1,17 +1,20 @@
 
 const { response, request } = require('express');
-const { playlistToTxt, downloadFromYT } = require('../service/playlist');
+const { playlistToTxt, downloadSongFromYT, getVideoURL } = require('../service/playlist');
 
 
-const obtainPlaylist = async (req, res = response) => {
+const downloadPlaylist = async (req, res = response) => {
     
-    const info = await playlistToTxt(req.body.link, req.body.token);
-
-    console.log(info);
+    const playlistSongs = await playlistToTxt(req.body.link, req.body.token);
+    
+    for( const song of playlistSongs ){
+        let url = await getVideoURL(song);        
+        await downloadSongFromYT(url);
+    } 
 
     res.json({
         msg: 'Playlist Obtenida',
-        info
+        playlistSongs
     })
 }
 
@@ -19,7 +22,7 @@ const obtainPlaylist = async (req, res = response) => {
 
 const ytDownload = async (req, res = response) => {
     
-    await downloadFromYT(req.body.link);
+    await downloadSongFromYT(req.body.link);
     
     res.json({
         msg: 'descargado',
@@ -27,7 +30,17 @@ const ytDownload = async (req, res = response) => {
     })
 }
 
+const ytSearch = async (req, res = response) => {
+    
+    const info = await getVideoURL(req.body.link);
+    
+    res.json({
+        msg: 'descargado',        
+        info
+    })
+}
+
 
 module.exports = {
-    obtainPlaylist, ytDownload
+    downloadPlaylist, ytDownload, ytSearch
 };

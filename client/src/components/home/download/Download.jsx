@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Nav from '../../nav/Nav'
 import axios from "axios";
+import downloadPlaylist from "../../../../../server/controllers/playList_controller"
 
 const Download = () => {
 
@@ -30,7 +31,7 @@ const Download = () => {
     const playlistLink = e.target.inputPlaylist.value;
     //spotifyClient( playlistLink , UserAccessToken);
     
-    ;
+    //downloadPlaylist(playlistLink, UserAccessToken);
 
     axios.post("http://localhost:3000/playlist",
       { 
