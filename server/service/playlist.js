@@ -38,12 +38,17 @@ async function playlistToTxt(playlistLink, accessToken) {
 
 async function downloadFromYT(videoURL){
     
-    // ytdl(videoURL)
-    //     .pipe(fs.createWriteStream('video.mp4'));
-    const stream = ytdl(videoURL, { format: 'bestaudio[ext=wav]' });
-    const file = fs.createWriteStream('cancionGucciFaka.wav');
-    stream.pipe(file);        
-  
+    const options = {filter: "audioonly", quality: "highestaudio"}
+    let stream = ytdl(videoURL, options);
+    let fileStream = fs.createWriteStream('audio.mp3');
+    stream.pipe(fileStream);
+
+    stream.on('progress', (chunkLength, downloaded, total) => {
+        console.log(`${downloaded}/${total} (${(downloaded/total*100).toFixed(2)}%)`);
+      });
+    //const videoId = ytdl.getVideoID(videoURL);
+    // const options = {filter: "audioonly", quality: "highestaudio"}
+    // const info = await ytdl.getInfo(videoURL)
     
 }
 
