@@ -19,13 +19,28 @@
 
 /* file box */
 
-.file {
+
+
+.fileBox{
   position: absolute;
-  display: inline-block;
-  bottom: 6rem;
-  left: 6rem;
-  cursor: pointer;
+  left: 4rem;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+  flex-direction: row;
 }
+
+
+.file {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: left .6s ease;
+  top: -1.5rem;
+}
+
 
 .file::before {
   border: 2px solid  #29d666;
@@ -45,6 +60,8 @@
   text-align: center;
   z-index: 1000;
   padding-top: 1.2rem;
+  transition: all .6s ease;
+
 }
 
 .file input[type="file"] {
@@ -66,7 +83,89 @@ audio::-webkit-media-controls-panel{
 }
 
 
+/* file elem */
 
+.file_elem{
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: left .6s ease;
+  top: -.5rem;
+}
+
+.file_elem::before {
+  border: 2px solid  #29d666;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  content: '+'; 
+  position: absolute;
+  padding: 0 1rem;
+  font-family: "ppF" ;
+  font-size: 4rem;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: 1000;
+  padding-top: 1rem;
+  height: 3rem;
+  width: 2rem;
+  background-color: #29d6660c;
+  transition: all .6s ease;
+}
+
+.file_elem input[type="file"] {
+  opacity: 0;
+  width: 6rem;
+  height: 32px;
+  display: inline-block;
+}
+
+
+/* box name song */
+
+
+.boxNameSong {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.nombre {
+  color: rgb(255, 255, 255);
+  font-size: 2rem;
+  width: 28rem;
+
+  padding: 0 1rem;
+  text-align: center;
+  font-family: "ppF";
+  letter-spacing: 1px;
+  transform: translateX(0);
+  animation: scroll 7s linear infinite;
+  transition: all .5s ease;
+}
+
+
+
+@keyframes scroll {
+  0% {
+    -webkit-transform: translateX(calc(28rem * 1));
+            transform: translateX(calc(28rem * 1));
+    transition: all .5s ease;
+
+  }
+  100% {
+    -webkit-transform: translateX(calc(-28rem * 1));
+            transform: translateX(calc(-28rem * 1));
+      transition: all .5s ease;
+
+  }
+}
 
 /* reproductor */
 
@@ -108,7 +207,7 @@ audio::-webkit-media-controls-panel{
   transition: all .1s ease;
 }
 
-.control:hover, .navMusic:hover{
+.control:hover, .navMusic:hover {
   fill: #29d666;
   transition: all .1s ease;
 }
@@ -127,7 +226,7 @@ audio::-webkit-media-controls-panel{
   width: 30rem;
   height: 7rem;
   position: absolute;
-  right: 25rem;
+  right: 18rem;
 }
 
 #iconMusic{
@@ -146,8 +245,6 @@ audio::-webkit-media-controls-panel{
   left: 50%;
   transform: translate(-50% , -50%);
 }
-
-
 
 
 
