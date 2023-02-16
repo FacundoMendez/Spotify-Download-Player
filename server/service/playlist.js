@@ -4,18 +4,23 @@ const axios = require('axios')
 const ytdl = require('ytdl-core');
 const ytsr = require('yt-search')
 
-
-
-async function getPlaylistTracksSP(accessToken, playlistId) {
-    const response = await axios.get(
-        `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
-        {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
+async function getAllPlaylistTracksSP(accessToken, playlistId) {
+    let allTracks = [];
+    let nextUrl = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
+  
+    while (nextUrl) {
+      const response = await axios.get(nextUrl, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
         }
-    );
-    return response.data.tracks.items;
+      });
+      const data = response.data;
+  
+      allTracks = [...allTracks, ...data.items];
+      nextUrl = data.next;
+    }
+  
+    return allTracks;
 }
 
 async function playlistToTxt(playlistLink, accessToken) {
@@ -24,7 +29,7 @@ async function playlistToTxt(playlistLink, accessToken) {
     const playlistId = playlist[playlist.length - 1];
 
 
-    const tracks = await getPlaylistTracksSP(accessToken, playlistId);
+    const tracks = await getAllPlaylistTracksSP(accessToken, playlistId);
 
     let songNames = [];
     for (let track of tracks) {
