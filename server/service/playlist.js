@@ -46,14 +46,15 @@ async function downloadSongFromYT(videoURL){
             const stream = ytdl(videoURL, options);
             const title = info.videoDetails.title.replace(/[&/#,+()$~%.'":*?<>{}|]/g, ' - ');
             // console.log(title.replace(/[&/#,+()$~%.'":*?<>{}|]/g, '-'));
-            const fileStream = fs.createWriteStream( `./downloads/${title}.mp3`);
+            const fileStream = fs.createWriteStream( `../client/public/songs/${title}.mp3`); // => guardar en una carpeta zip 
             stream.pipe(fileStream);    
-
+            termino === true
         })
         .catch(err => {
           console.error('Error getting video info:', err);
         });
   
+      
 }
 
 async function getVideoURL( songName ){

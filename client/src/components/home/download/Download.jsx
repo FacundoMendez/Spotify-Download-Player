@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import Nav from '../../nav/Nav'
 import axios from "axios";
-/* import downloadPlaylist from "../../../../../server/controllers/playList_controller" */
+
+
 
 const Download = () => {
 
@@ -13,7 +14,6 @@ const Download = () => {
 
 
   /* recuperar el tipo de archivo a descargar mp3 / wave */
-
 
   const [typeSong, setTypeSong] = useState("");  // => typeSong contiene el tipo de archivo
 
@@ -43,8 +43,59 @@ const Download = () => {
         console.log(response.data);
       })
 
-
   }
+
+
+  /* download file  */
+
+  function descargarArchivo() {
+    // Aquí debe proporcionar la URL del archivo que desea descargar.
+
+
+    const urlArchivo = "../../../../public/songs/music.zip";  // => url del archivo
+    const nameArchivo = "Music-Download" // => nombre del archivo
+  
+    // Crear una solicitud HTTP para obtener el archivo.
+    const solicitud = new XMLHttpRequest();
+    solicitud.open('GET', urlArchivo, true);
+    solicitud.responseType = 'blob';
+  
+    // Cuando se carga el archivo, crear una URL de objeto de blob y descargar el archivo.
+    solicitud.onload = function() {
+      if (solicitud.status === 200) {
+        const blob = solicitud.response;
+        const urlBlob = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = urlBlob;
+        // Aquí debe proporcionar el nombre que desea darle al archivo.
+        a.download = nameArchivo;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(urlBlob);
+      }
+    };
+    solicitud.send();
+  }
+
+
+    /* validacion de input */
+
+  function validarInput() {
+    const input = document.getElementById('playlistId');
+    const valorInput = input.value;
+
+    // Verificar si el valor del input es válido
+    if (valorInput.trim() === '') {
+      alert('Por favor ingrese un valor en el input.');
+      return false;
+    }
+
+    // Si el valor del input es válido, ejecutar la función descargarArchivo()
+    descargarArchivo();
+  }
+
 
   return (
     <>
@@ -62,9 +113,7 @@ const Download = () => {
             <option className='option' value="wave">wave</option>
           </select>
 
-          <button className="sendContact_main" type='submit' >
-              Send
-          </button>
+          <button className="sendContact_main" onClick={validarInput} type="submit" > Send</button>
         </form>
     
       </div>
