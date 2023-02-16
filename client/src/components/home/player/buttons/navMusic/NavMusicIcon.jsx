@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import NavMusicViewport from './NavMusicViewport'
 
-const NavMusic = ({songs , setCurrentSongIndex }) => {
+const NavMusic = ({songs , setCurrentSongIndex , playAudio , setPlayAudio}) => {
 
   const [activeNavMusic , setActiveNavMusic] = useState(false)
 
@@ -20,7 +20,7 @@ const NavMusic = ({songs , setCurrentSongIndex }) => {
         </svg>
     </div>
   
-    {activeNavMusic &&  <NavMusicViewport songs = {songs}  setCurrentSongIndex = {setCurrentSongIndex} /> }
+    {activeNavMusic &&  <NavMusicViewport songs = {songs} setCurrentSongIndex = {setCurrentSongIndex} setPlayAudio = {setPlayAudio}/> }
 
     </>
   )
