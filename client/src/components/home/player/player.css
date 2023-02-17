@@ -199,6 +199,11 @@ audio::-webkit-media-controls-panel{
   border-radius: 25px;
 }
 
+
+.navMobileRep{
+  display: none;
+}
+
 .boxButtons{
   display: flex;
   justify-content: center;
@@ -367,7 +372,7 @@ input[type=range]::-webkit-slider-thumb {
 
 .boxProgress{
   position: absolute;
-  width: 30%;
+  width: 25%;
   bottom: 0;
   display: flex;
   justify-content: center;
