@@ -53,7 +53,6 @@ const Player = () => {
       <canvas className='canvas_banner' id="canvas_banner"></canvas>
       <audio  preload="auto" id="audio" />
 
-
       <div className="reproductor">
 
         <div className="fileBox">
@@ -85,14 +84,19 @@ const Player = () => {
 
 
         <div className="boxControls">
-          <Prev songs={songs} currentSongIndex={currentSongIndex}  setCurrentSongIndex = {setCurrentSongIndex}/>
-          <StartPause songs={songs} currentSongIndex={currentSongIndex} setCurrentSongIndex={setCurrentSongIndex} playAudio={playAudio} setPlayAudio = {setPlayAudio}/>
-          <Next songs={songs} currentSongIndex={currentSongIndex}  setCurrentSongIndex = {setCurrentSongIndex} />
+          <div className="boxButtons">
+            <Prev songs={songs} currentSongIndex={currentSongIndex}  setCurrentSongIndex = {setCurrentSongIndex}/>
+            <StartPause songs={songs} currentSongIndex={currentSongIndex} setCurrentSongIndex={setCurrentSongIndex} playAudio={playAudio} setPlayAudio = {setPlayAudio}/>
+            <Next songs={songs} currentSongIndex={currentSongIndex}  setCurrentSongIndex = {setCurrentSongIndex} />
+          </div>
+
           <Volumen />
            
           {songs.length > 1 && <NavMusic songs = {songs} setCurrentSongIndex = {setCurrentSongIndex} setPlayAudio = {setPlayAudio}/> }
                
           <ProgressBar />
+
+          <div className="navMobileRep"></div>
         </div>
    
       </div>

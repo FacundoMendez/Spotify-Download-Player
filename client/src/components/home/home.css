@@ -172,3 +172,242 @@
 }
 
 
+
+
+@media screen and (max-width: 1440px) {
+    .boxDownload h2 {
+        font-size: 6rem;
+    }
+
+    .boxDownload p {
+        font-size: 2.5rem;
+    }
+
+    .box_contact_main input {
+        width: 70rem;
+    }
+}
+
+
+@media screen and (max-width: 1070px) {
+    .boxDownload h2 {
+        font-size: 4.8rem;
+    }
+
+    .boxDownload p {
+        font-size: 2.2rem;
+    }
+
+    .box_contact_main input {
+        width: 60rem;
+    }
+}
+
+
+@media screen and (max-width: 770px) {
+    .boxDownload h2 {
+        font-size: 4rem;
+    }
+
+    .boxDownload p {
+        font-size: 1.9rem;
+    }
+
+    .box_contact_main input {
+        width: 50rem;
+        height: 5rem;
+    }
+
+    #typeSong {
+        height: 5rem;
+    }
+
+    .sendContact_main {
+        font-size: 2rem;
+        padding: .5rem 2rem;
+        right: -9.5rem;
+        transform: matrix(1.15,0,0,1.25,0,0);
+    }
+
+    .box_contact_main input::placeholder , .pp_main::placeholder{
+        top: .8rem;
+        font-size: 2.5rem;
+    }
+}
+
+
+@media screen and (max-width: 650px) {
+    .boxDownload h2 {
+        font-size: 3.4rem;
+    }
+
+    .boxDownload {
+        gap: 1rem;
+    }
+
+    .boxDownload p {
+        font-size: 1.7rem;
+    }
+
+    .box_contact_main input {
+        width: 44rem;
+        height: 5rem;
+    }
+
+    #typeSong {
+        height: 5rem;
+    }
+
+    .sendContact_main {
+        font-size: 2rem;
+        padding: .5rem 2rem;
+        right: -9.5rem;
+        transform: matrix(1.15,0,0,1.25,0,0);
+    }
+
+    .box_contact_main input::placeholder , .pp_main::placeholder{
+        top: .8rem;
+        font-size: 2.5rem;
+    }
+}
+
+
+
+@media screen and (max-width: 560px) {
+    .boxDownload h2 {
+        font-size: 3.5rem;
+        padding: 0 8rem;
+        line-height: 3.9rem;
+    }
+
+    .boxDownload {
+        gap: 3rem;
+    }
+
+    .boxDownload p {
+        font-size: 1.9rem;
+        padding: 0 4rem;
+
+    }
+
+    .box_contact_main input {
+        width: 35rem;
+        height: 5rem;
+        padding-right: 8rem;
+    }
+
+    #typeSong {
+        height: 5rem;
+        width: 8rem;  
+     }
+
+    .sendContact_main {
+        font-size: 2rem;
+        padding: .5rem 2rem;
+        right: -9.5rem;
+        width: 8rem;  
+
+        transform: matrix(1.15,0,0,1.25,0,0);
+    }
+
+    .box_contact_main input::placeholder , .pp_main::placeholder{
+        top: .8rem;
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (max-width:454px) {
+    .boxDownload h2 {
+        font-size: 3.4rem;
+        padding: 0 5rem;
+        line-height: 3.5rem;
+    }
+
+    .boxDownload {
+        gap: 3rem;
+    }
+
+    .boxDownload p {
+        font-size: 1.9rem;
+        padding: 0 2rem;
+
+    }
+
+    .box_contact_main {
+        left: -4.6rem;
+        gap: 1;
+    }
+
+    .box_contact_main input {
+        width: 29rem;
+        height: 5rem;
+        font-size: 1.6rem;
+        padding-right: 7.5rem;
+    }
+
+    #typeSong {
+        height: 5rem;
+        width: 7rem;  
+     }
+
+    .sendContact_main {
+        font-size: 1.8rem;
+        padding: .6rem 1rem;
+        right: -8.5rem;
+        width: 7rem;  
+    }
+
+    .box_contact_main input::placeholder , .pp_main::placeholder{
+        top: .8rem;
+        font-size: 2.5rem;
+    }
+}
+
+
+@media screen and (max-width:390px) {
+    .boxDownload h2 {
+        font-size: 3rem;
+        padding: 0 5rem;
+        line-height: 3.5rem;
+    }
+
+    .boxDownload {
+        gap: 3rem;
+    }
+
+    .boxDownload p {
+        font-size: 1.7rem;
+        padding: 0 2rem;
+
+    }
+
+    .box_contact_main {
+        left: -4rem;
+    }
+
+    .box_contact_main input {
+        width: 22rem;
+        height: 5rem;
+        font-size: 1.6rem;
+        padding-right: 6.5rem;
+    }
+
+    #typeSong {
+        height: 5rem;
+        width: 6rem;
+        font-size: 1.8rem;
+        padding-left: .5;  
+     }
+
+    .sendContact_main {
+        font-size: 1.8rem;
+        padding: .6rem 1rem;
+        right: -7.5rem;
+        width: 6rem;
+    }
+
+    .box_contact_main input::placeholder , .pp_main::placeholder{
+        top: .8rem;
+        font-size: 2.5rem;
+    }
+}

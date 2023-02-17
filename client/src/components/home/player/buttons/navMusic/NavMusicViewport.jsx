@@ -1,13 +1,11 @@
-import React, {useState} from 'react'
+import React, {useCallback} from 'react'
 
 const NavMusicViewport = ({songs , setCurrentSongIndex, setPlayAudio}) => {
 
-  const audio = document.getElementById("audio")
-
-    const handleSongClick = (index) => {
+    const handleSongClick = useCallback( (index) => {
         setCurrentSongIndex(index);
         setPlayAudio(true);
-    };
+    },[setCurrentSongIndex , setPlayAudio])
     
       return (
         <div className="boxNavMusic">

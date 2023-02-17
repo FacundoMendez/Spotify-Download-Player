@@ -1,47 +1,44 @@
-import React, { useEffect , useState} from 'react'
+import React, { useCallback, useEffect } from 'react'
 import CanvasColor from '../canvasColor/CanvasColor'
 
 const StartPause = ({songs , currentSongIndex , setCurrentSongIndex , setPlayAudio , playAudio}) => {
 
+  const audio = document.getElementById("audio");
 
-  const audio = document.getElementById("audio")
+  /* pause / start song */
+  const handlePlayPause = useCallback(() => {
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+    setPlayAudio(!playAudio);
+  }, [audio, playAudio, setPlayAudio]);
 
-    /* pause / start song */
-    const handlePlayPause = () => {
-      if (audio.paused) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
-      setPlayAudio(!playAudio);
-    };
+  const playSong = useCallback(() => {
+    if (songs.length > 0) {
+      const song = songs[currentSongIndex];
+      if (song && song.file) {
+        const url = URL.createObjectURL(song.file);
+        audio.src = url;
 
-    const playSong = () => {
-      if (songs.length > 0) {
-        const song = songs[currentSongIndex];
-        if (song && song.file) {
-          const url = URL.createObjectURL(song.file);
-          audio.src = url;
-    
-          if (playAudio) {
-            audio.play().catch((error) => {
-              console.error(error);
-            });
-          }
+        if (playAudio) {
+          audio.play().catch((error) => {
+            console.error(error);
+          });
         }
       }
-    };
+    }
+  }, [audio, currentSongIndex, playAudio, songs]);
 
-    const handleEnded = () => {
-      setCurrentSongIndex((currentSongIndex + 1) % songs.length);
-    };
+  const handleEnded = useCallback(() => {
+    setCurrentSongIndex((currentSongIndex + 1) % songs.length);
+  }, [setCurrentSongIndex, currentSongIndex, songs]);
 
-    
-    /* canvas */
-
-  const canvasFunc = () => {
+  /* canvas */
+  const canvasFunc = useCallback(() => {
     CanvasColor(playAudio)
-  }
+  }, [playAudio]);
 
   useEffect(() => {
     playSong()
@@ -53,12 +50,10 @@ const StartPause = ({songs , currentSongIndex , setCurrentSongIndex , setPlayAud
     return () => {
       if(audio){
         audio.removeEventListener("ended", handleEnded);
-
       }
     };
- 
-  },[songs, currentSongIndex, playAudio])
-  
+  }, [songs, currentSongIndex, playAudio, playSong, canvasFunc, handleEnded]);
+
     
   return (
     <div className="pause-control control" onClick={handlePlayPause}>

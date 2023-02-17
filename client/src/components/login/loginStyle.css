@@ -101,3 +101,40 @@
     }
     
 }
+
+
+
+@media screen and (max-width: 1440px) {
+    .flare{
+        top: 128%;
+    }
+}
+
+
+@media screen and (max-width: 1070px) {
+    .flare{
+        width: 80vw;
+        height: 40vw;
+        top: 118%;
+    }
+}
+
+
+@media screen and (max-width: 770px) {
+    .flare{
+        width: 90vw;
+        height: 40vw;
+        top: 110%;
+        background: rgba(0, 255, 200, 0.61);
+        filter: blur(calc(45vw * 0.28));
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    .flare{
+        width: 100vw;
+        top: 105%;
+        filter: blur(calc(45vw * 0.28));
+    }
+}
