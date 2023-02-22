@@ -1,9 +1,15 @@
 import React from 'react'
 
 const Prev = ({setCurrentSongIndex,currentSongIndex , songs}) => {
+  const audio = document.getElementById("audio");
+
 
   const handlePrevSong = () => {
     setCurrentSongIndex((currentSongIndex + songs.length - 1) % songs.length);
+
+    if(audio){
+      audio.currentTime = 0;
+    }
   };
   return (
     <div className="ant-control control" onClick={handlePrevSong}>

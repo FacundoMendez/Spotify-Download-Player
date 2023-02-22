@@ -1,19 +1,12 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect , useState} from 'react'
 import CanvasColor from '../canvasColor/CanvasColor'
+
 
 const StartPause = ({songs , currentSongIndex , setCurrentSongIndex , setPlayAudio , playAudio}) => {
 
   const audio = document.getElementById("audio");
 
-  /* pause / start song */
-  const handlePlayPause = useCallback(() => {
-    if (audio.paused) {
-      audio.play();
-    } else {
-      audio.pause();
-    }
-    setPlayAudio(!playAudio);
-  }, [audio, playAudio, setPlayAudio]);
+
 
   const playSong = useCallback(() => {
     if (songs.length > 0) {
@@ -21,43 +14,55 @@ const StartPause = ({songs , currentSongIndex , setCurrentSongIndex , setPlayAud
       if (song && song.file) {
         const url = URL.createObjectURL(song.file);
         audio.src = url;
-
+  
         if (playAudio) {
-          audio.play().catch((error) => {
-            console.error(error);
-          });
+          audio.play()
         }
       }
     }
-  }, [audio, currentSongIndex, playAudio, songs]);
+  }, [songs, currentSongIndex, audio, playAudio]);
 
-  const handleEnded = useCallback(() => {
+    /* pause / start song */
+    const handlePlayPause = useCallback(() => {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+      setPlayAudio(!playAudio);
+    }, [audio, setPlayAudio, playAudio]);
+    
+
+  const handleEnded = () => {
     setCurrentSongIndex((currentSongIndex + 1) % songs.length);
-  }, [setCurrentSongIndex, currentSongIndex, songs]);
+  };
 
-  /* canvas */
+
   const canvasFunc = useCallback(() => {
     CanvasColor(playAudio)
   }, [playAudio]);
 
+
+
   useEffect(() => {
-    playSong()
-    canvasFunc()
-    if(audio){
+    playSong();
+    canvasFunc();
+    
+    if (audio) {
       audio.addEventListener("ended", handleEnded);
     }
 
     return () => {
-      if(audio){
+      if (audio) {
         audio.removeEventListener("ended", handleEnded);
       }
     };
-  }, [songs, currentSongIndex, playAudio, playSong, canvasFunc, handleEnded]);
+  }, [songs, canvasFunc, handleEnded]);
 
     
   return (
     <div className="pause-control control" onClick={handlePlayPause}>
-        {playAudio ?
+        {playAudio  ?
         
             <svg  viewBox="-5.5 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" ><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>pause</title> <path d="M0 6.563v18.875c0 0.531 0.438 0.969 0.969 0.969h6.625c0.5 0 0.906-0.438 0.906-0.969v-18.875c0-0.531-0.406-0.969-0.906-0.969h-6.625c-0.531 0-0.969 0.438-0.969 0.969zM12.281 6.563v18.875c0 0.531 0.438 0.969 0.938 0.969h6.625c0.531 0 0.969-0.438 0.969-0.969v-18.875c0-0.531-0.438-0.969-0.969-0.969h-6.625c-0.5 0-0.938 0.438-0.938 0.969z"></path> </g></svg>
 

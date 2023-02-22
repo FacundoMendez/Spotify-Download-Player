@@ -2,10 +2,15 @@ import React from 'react'
 
 
 const Next = ({setCurrentSongIndex,currentSongIndex , songs}) => {
+  const audio = document.getElementById("audio");
 
     /* next song */
     const handleNextSong = () => {
       setCurrentSongIndex((currentSongIndex + 1) % songs.length);
+    
+      if(audio){
+        audio.currentTime = 0;
+      }
     };
 
   return (
