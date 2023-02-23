@@ -49,7 +49,7 @@ const Player = () => {
   useEffect(() =>{
 
     gsap.from( ".reproductor", 1, {
-      delay:1,
+      delay:.5,
       y: 95,
       opacity:0,
       ease:Power4.easeInOut,

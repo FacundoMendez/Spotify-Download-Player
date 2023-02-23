@@ -116,7 +116,7 @@ const Download = () => {
           <h2 className='titleDownload'>Your PlayList <span>/</span>  song from <strong>Spotify</strong> </h2>
         </div>
         <div className="boxSubTitles">
-          <p className='subtitleDownload'>Paste the URL of your Spotify PlayList / song and start your download</p>
+          <p className='subtitleDownload'>Paste the URL of your <strong>Spotify</strong>  PlayList <span>/</span> song and start your download</p>
         </div>
         
     

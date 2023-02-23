@@ -10,6 +10,7 @@
     min-height: 100vh;
     background-color: #070707;
     position: fixed;
+    filter: drop-shadow(0 0 10px #070707);
     top: 0;
     left: 0;
     z-index: 99999999 !important;
@@ -17,12 +18,14 @@
 .colorPalet2{
     width: 100%;
     min-height: 100vh;
-    background-color: #06ff97;
+    background: rgb(0, 255, 170);
+    filter: drop-shadow(0 0 4px rgb(0, 255, 170));
     position: fixed;
     top: 0;
     left: 0;
     z-index: 99999998 !important;
 }
+
 
 /* download */
 
@@ -87,11 +90,12 @@
     font-family: "ppF" ;
     font-size: 2.7rem;
     color: white;
-    letter-spacing: 1px;
     text-transform: uppercase;
     position: relative;
     text-align: center;
     z-index: 1000;
+    letter-spacing: 1.5px;
+
 }
 
 
@@ -130,7 +134,7 @@
     font-weight: bold;
     position: relative;
     transition: all .8s ease;
-    background-color: rgb(12, 12, 12);
+    background-color: rgba(17, 17, 17, 0.979);
     color: white;
     padding-right: 12rem;
 }
@@ -148,6 +152,7 @@
     outline: none;
     position: absolute;
     color: #ffffff3b;
+    text-transform: uppercase;
     font-weight: bold;
     top: 1.2rem;
 }
