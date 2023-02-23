@@ -13,14 +13,12 @@
 
 
 .canvas_banner{
-    position: fixed;
-    width: 100%;
+    position: absolute;
+    width: 100vw;
     height: 100vh;
     top: 0;
     left: 0;
-    z-index: -1;
-  overflow: hidden;
-
+    overflow: hidden;
 }
 
 /* file box */
@@ -191,6 +189,8 @@ audio::-webkit-media-controls-panel{
   flex-wrap: nowrap;
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
+  z-index: 1;
+
 }
 
 .boxControls{
@@ -245,6 +245,7 @@ audio::-webkit-media-controls-panel{
   height: 7rem;
   position: absolute;
   right: 18rem;
+  
 }
 
 #iconMusic{
@@ -309,9 +310,10 @@ input[type=range]::-webkit-slider-thumb {
   fill: white;
   width: 4rem;
   cursor: pointer;
-  top: 50%;
+  bottom:1.5rem;
   transform: translate(0 , -50%);
   transition: all .5s ease;
+  z-index: 1;
 }
 
 .boxNavMusic{
@@ -326,7 +328,6 @@ input[type=range]::-webkit-slider-thumb {
   background-color: #000000ef;
   backdrop-filter: blur(1px);
   transition: all .5s ease;
-  z-index: -1;
   overflow-y: scroll;
 }
 
@@ -616,7 +617,7 @@ input[type=range]::-webkit-slider-thumb {
 
   .file_elem::before {
     position: absolute;
-    bottom: 0;
+    bottom: 2rem;
     font-size: 4rem;
     height: 3rem;
     width: 2rem;
@@ -662,12 +663,12 @@ input[type=range]::-webkit-slider-thumb {
 
   .initSong {
     bottom: 8rem;
-    left: -7rem;
+    left: -8rem;
   }
 
   .exitSong {
     bottom: 8rem;
-    right: -7rem;
+    right: -8rem;
   }
 
 
@@ -684,9 +685,10 @@ input[type=range]::-webkit-slider-thumb {
   .navMusic {
     position: absolute;
     right: 5%;
-    top: 22rem;
+    bottom: 0rem;
     z-index: 99999;
   }
+  
 
   /* nav */
 
@@ -756,14 +758,20 @@ input[type=range]::-webkit-slider-thumb {
 
   .initSong {
     bottom: 8rem;
-    left: -9.5rem;
+    left: -10.5rem;
   }
 
   .exitSong {
     bottom: 8rem;
-    right: -9.5rem;
+    right: -10.5rem;
   }
 
+  .navMusic {
+    bottom: -1rem;
+  }
+  .file_elem::before {
+    bottom: 1rem;
+  }
 }
 
 
@@ -785,12 +793,12 @@ input[type=range]::-webkit-slider-thumb {
 
   .initSong {
     bottom: 8rem;
-    left: -10.5rem;
+    left: -11.5rem;
   }
 
   .exitSong {
     bottom: 8rem;
-    right: -10.5rem;
+    right: -11.5rem;
   }
   
   .file_elem{
@@ -816,12 +824,12 @@ input[type=range]::-webkit-slider-thumb {
 
   .initSong {
     bottom: 8rem;
-    left: -10.5rem;
+    left: -11.5rem;
   }
 
   .exitSong {
     bottom: 8rem;
-    right: -10.5rem;
+    right: -11.5rem;
   }
   .file_elem{
     left: 13%;
@@ -854,12 +862,12 @@ input[type=range]::-webkit-slider-thumb {
 
   .initSong {
     bottom: 8rem;
-    left: -9.5rem;
+    left: -10.5rem;
   }
 
   .exitSong {
     bottom: 8rem;
-    right: -9.5rem;
+    right: -10.5rem;
   }
 
   .boxButtons {

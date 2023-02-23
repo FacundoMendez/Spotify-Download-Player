@@ -44,7 +44,6 @@ html{
 }
 
 .App{
-  overflow-x: hidden;
   background-color: #050505;
   overflow: hidden;
 }

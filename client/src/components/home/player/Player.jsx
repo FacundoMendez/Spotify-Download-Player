@@ -10,6 +10,7 @@ import Volumen from './buttons/Volumen'
 import ProgressBar from './buttons/ProgressBar'
 import gsap from "gsap"
 import { Power4 } from 'gsap'
+import TransitionPages from '../../assets/transitions/TransitionPages'
 
 const Player = () => {   
   
@@ -46,15 +47,9 @@ const Player = () => {
   };
 
   useEffect(() =>{
-    gsap.from("#content" , 0.7, {
-      delay:.3,
-      opacity:0,
-      ease:Power4.easeInOut,
-      stagger:.5
-    })
 
     gsap.from( ".reproductor", 1, {
-      delay:.5,
+      delay:1,
       y: 95,
       opacity:0,
       ease:Power4.easeInOut,
@@ -64,8 +59,9 @@ const Player = () => {
 
   return (
     <>
-    <Nav/>
+    <TransitionPages/>
 
+    <Nav/>
     <div id="content">
       <canvas className='canvas_banner' id="canvas_banner"></canvas>
       <audio  preload="auto" id="audio" />
@@ -108,15 +104,14 @@ const Player = () => {
           </div>
 
           <Volumen />
-           
-          {songs.length > 1 && <NavMusic songs = {songs} setCurrentSongIndex = {setCurrentSongIndex} setPlayAudio = {setPlayAudio}/> }
-               
           <ProgressBar />
 
           <div className="navMobileRep"></div>
         </div>
    
       </div>
+      {songs.length > 1 && <NavMusic songs = {songs} setCurrentSongIndex = {setCurrentSongIndex} setPlayAudio = {setPlayAudio}/> }
+
     </div>
     </>
   )

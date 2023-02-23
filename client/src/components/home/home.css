@@ -5,6 +5,25 @@
     overflow: hidden;
 }
 
+.colorPalet{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #070707;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999999 !important;
+}
+.colorPalet2{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #06ff97;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999998 !important;
+}
+
 /* download */
 
 .boxDownload{

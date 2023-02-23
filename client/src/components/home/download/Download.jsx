@@ -100,7 +100,7 @@ const Download = () => {
   useEffect(() =>{
       gsap.from([".titleDownload", ".subtitleDownload", ".boxForm" ], 1.3, {
         delay:.3,
-        y: 67,
+        y: 87,
         opacity:0,
         ease:Power4.easeInOut,
         stagger:{amount: .9}
@@ -110,31 +110,29 @@ const Download = () => {
 
   return (
     <>
-    <Nav/>
-    <div className="boxDownload">
-      <div className="boxTitles">
-        <h2 className='titleDownload'>Your PlayList <span>/</span>  song from <strong>Spotify</strong> </h2>
-      </div>
-      <div className="boxSubTitles">
-       
-        <p className='subtitleDownload'>Paste the URL of your Spotify PlayList / song and start your download</p>
+      <Nav/>
+      <div className="boxDownload">
+        <div className="boxTitles">
+          <h2 className='titleDownload'>Your PlayList <span>/</span>  song from <strong>Spotify</strong> </h2>
         </div>
-      
-   
-      <div className="boxForm">
-      <form className="box_contact_main" onSubmit={(handleClick)}>
-          <input id='playlistId' name='inputPlaylist'  type="text" required placeholder='url' />
+        <div className="boxSubTitles">
+          <p className='subtitleDownload'>Paste the URL of your Spotify PlayList / song and start your download</p>
+        </div>
         
-          <select name="typeSong" id="typeSong" value={typeSong} onChange={handleChange}>
-            <option className='option' value="mp3">mp3</option>
-            <option className='option' value="wave">wave</option>
-          </select>
-
-          <button className="sendContact_main" onClick={validarInput} type="submit" > Send</button>
-        </form>
     
+        <div className="boxForm">
+          <form className="box_contact_main" onSubmit={(handleClick)}>
+              <input id='playlistId' name='inputPlaylist'  type="text" required placeholder='url' />
+            
+              <select name="typeSong" id="typeSong" value={typeSong} onChange={handleChange}>
+                <option className='option' value="mp3">mp3</option>
+                <option className='option' value="wave">wave</option>
+              </select>
+
+            <button className="sendContact_main" onClick={validarInput} type="submit" > Send</button>
+          </form>
+        </div>
       </div>
-    </div>
     </>
 
   )
