@@ -14,7 +14,6 @@ function App(){
         <Route exact path="/login"  element={<SpotifyLogin/>} />
         <Route exact path="/home"  element={<Home/>} />
         <Route exact path="/home:player" element={<Player/>} />
-        
         <Route path="/"  element={<HomeLogin/>} />
       </Routes>
     </BrowserRouter>

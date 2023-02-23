@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import gsap, { Circ } from "gsap"
 import { Power4 } from 'gsap'
+import "./transition.css"
 
 const TransitionPages = () => {
 

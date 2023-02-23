@@ -59,9 +59,9 @@ const Player = () => {
 
   return (
     <>
+    <Nav/>
     <TransitionPages/>
 
-    <Nav/>
     <div id="content">
       <canvas className='canvas_banner' id="canvas_banner"></canvas>
       <audio  preload="auto" id="audio" />
