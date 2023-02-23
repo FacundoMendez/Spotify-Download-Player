@@ -5,6 +5,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    width: 100%;
+    min-height: 92.5vh;
+    overflow : hidden !important;
 }
 
 
@@ -15,6 +19,8 @@
     top: 0;
     left: 0;
     z-index: -1;
+  overflow: hidden;
+
 }
 
 /* file box */

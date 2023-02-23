@@ -17,7 +17,30 @@
     top: 11rem;
 }
 
-.boxDownload h2{
+.boxTitles{
+    height: 100%;
+    width: 100%;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 1rem;
+}
+
+.boxSubTitles{
+    height: 100%;
+    padding: .5rem;
+    width: 100%;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    margin-top: -1rem;
+}
+
+.titleDownload{
     font-family: "ppF" ;
     font-size: 7rem;
     color: white;
@@ -27,6 +50,7 @@
     transform: matrix(1.15,0,0,1.25,0,0);
     text-align: center;
     z-index: 1000;
+    overflow: hidden;
 }
 
 .boxDownload strong{

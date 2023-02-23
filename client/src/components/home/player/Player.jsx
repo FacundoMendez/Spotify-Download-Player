@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import Nav from '../../nav/Nav'
 import "./player.css"
 
@@ -8,7 +8,8 @@ import StartPause from './buttons/StartPause'
 import NavMusic from './buttons/navMusic/NavMusicIcon'
 import Volumen from './buttons/Volumen'
 import ProgressBar from './buttons/ProgressBar'
-
+import gsap from "gsap"
+import { Power4 } from 'gsap'
 
 const Player = () => {   
   
@@ -44,6 +45,22 @@ const Player = () => {
     setSongs(songsArray);
   };
 
+  useEffect(() =>{
+    gsap.from("#content" , 0.7, {
+      delay:.3,
+      opacity:0,
+      ease:Power4.easeInOut,
+      stagger:.5
+    })
+
+    gsap.from( ".reproductor", 1, {
+      delay:.5,
+      y: 95,
+      opacity:0,
+      ease:Power4.easeInOut,
+      stagger:{amount: .9}
+    })
+  },[])
 
   return (
     <>

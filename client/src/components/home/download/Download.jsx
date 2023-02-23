@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState ,useEffect} from 'react'
 import Nav from '../../nav/Nav'
 import axios from "axios";
-
+import gsap, { Elastic } from "gsap"
+import { Power4 } from 'gsap'
 
 
 const Download = () => {
@@ -96,14 +97,30 @@ const Download = () => {
     descargarArchivo();
   }
 
+  useEffect(() =>{
+      gsap.from([".titleDownload", ".subtitleDownload", ".boxForm" ], 1.3, {
+        delay:.3,
+        y: 67,
+        opacity:0,
+        ease:Power4.easeInOut,
+        stagger:{amount: .9}
+      })
+
+    },[])
 
   return (
     <>
     <Nav/>
     <div className="boxDownload">
-      <h2>Your PlayList <span>/</span>  song from <strong>Spotify</strong> </h2>
-      <p>Paste the URL of your Spotify PlayList / song and start your download</p>
-    
+      <div className="boxTitles">
+        <h2 className='titleDownload'>Your PlayList <span>/</span>  song from <strong>Spotify</strong> </h2>
+      </div>
+      <div className="boxSubTitles">
+       
+        <p className='subtitleDownload'>Paste the URL of your Spotify PlayList / song and start your download</p>
+        </div>
+      
+   
       <div className="boxForm">
       <form className="box_contact_main" onSubmit={(handleClick)}>
           <input id='playlistId' name='inputPlaylist'  type="text" required placeholder='url' />
