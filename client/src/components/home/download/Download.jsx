@@ -3,6 +3,7 @@ import Nav from '../../nav/Nav'
 import axios from "axios";
 import gsap, { Elastic } from "gsap"
 import { Power4 } from 'gsap'
+import Errors from '../../assets/Errors/Errors';
 
 
 const Download = () => {
@@ -11,6 +12,12 @@ const Download = () => {
   const hash = window.location.hash.substr(1);
   const hashParams = hash.split('&').filter(param => param.startsWith('access_token='));
   const UserAccessToken = hashParams[0].split('=')[1];
+
+
+  //aca se guardan los errores 
+
+  const [getError , setError] = useState("")
+
 
 
 
@@ -89,7 +96,7 @@ const Download = () => {
 
     // Verificar si el valor del input es válido
     if (valorInput.trim() === '') {
-      alert('Por favor ingrese un valor en el input.');
+      setError("Por favor ingrese un valor en el input.")
       return false;
     }
 
@@ -97,7 +104,9 @@ const Download = () => {
     descargarArchivo();
   }
 
+
   useEffect(() =>{
+
       gsap.from([".titleDownload", ".subtitleDownload", ".boxForm" ], 1.3, {
         delay:.3,
         y: 87,
@@ -106,11 +115,13 @@ const Download = () => {
         stagger:{amount: .9}
       })
 
-    },[])
+    },[ ])
 
   return (
     <>
       <Nav/>
+      <Errors getError={getError} />
+
       <div className="boxDownload">
         <div className="boxTitles">
           <h2 className='titleDownload'>Your PlayList <span>/</span>  song from <strong>Spotify</strong> </h2>

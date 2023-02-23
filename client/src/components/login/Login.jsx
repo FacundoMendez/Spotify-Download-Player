@@ -8,6 +8,8 @@ const HomeLogin = () => {
     <>
       <TransitionPages/>
       <div className='homeLogin'>
+        <div className="flare"></div>
+
         <div className="containerTextlogin">
           <div className="titleHomeLogin"> Download your music from <strong>Spotify</strong>  free</div>
 
@@ -16,7 +18,8 @@ const HomeLogin = () => {
           </NavLink>
         </div>
   
-        <div className="flare"></div>
+        <div className="flareBottom"></div>
+
       </div>
     </>
 

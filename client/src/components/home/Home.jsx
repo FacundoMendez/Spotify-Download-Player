@@ -11,6 +11,7 @@ const Home = () => {
         <TransitionPages/>
         <Download/>
         <div className="flare"></div>
+        <div className="flareBottom"></div>
     </div>
   )
 }

@@ -1,0 +1,20 @@
+.boxError{
+    padding: 1rem 1.5rem;
+    border: 3px solid rgb(255, 27, 27);
+    background-color: black;
+    font-family: "ppF" ;
+    font-size: 1.8rem;
+    color: white;
+    letter-spacing: 1px;
+    border-radius: 15px;
+    position: fixed;
+    top: 9%;
+    right: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    transition: all .5s ease;
+    opacity: 0;
+    visibility: hidden;
+}
