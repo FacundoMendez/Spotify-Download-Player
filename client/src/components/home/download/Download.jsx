@@ -43,12 +43,13 @@ const Download = () => {
       //spotifyClient( playlistLink , UserAccessToken);
       
       //downloadPlaylist(playlistLink, UserAccessToken);
-
+      setLoader(true)
       axios.post("http://localhost:3000/playlist",{ 
           link: playlistLink, 
           token: UserAccessToken
         })
         .then(function (response) {
+          setLoader(false)
           console.log(response.data);
         })
   }

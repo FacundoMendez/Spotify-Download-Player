@@ -15,6 +15,7 @@ async function getAllPlaylistTracksSP(accessToken, playlistId) {
         }
       });
       const data = response.data;
+
   
       allTracks = [...allTracks, ...data.items];
       nextUrl = data.next;
@@ -26,8 +27,8 @@ async function getAllPlaylistTracksSP(accessToken, playlistId) {
 async function playlistToTxt(playlistLink, accessToken) {
 
     const playlist = playlistLink.split("/");
-    const playlistId = playlist[playlist.length - 1];
-
+    let playlistSinParams = playlist[playlist.length - 1].split("?");
+    const playlistId = playlistSinParams[0];
 
     const tracks = await getAllPlaylistTracksSP(accessToken, playlistId);
 
@@ -53,7 +54,6 @@ async function downloadSongFromYT(videoURL){
             // console.log(title.replace(/[&/#,+()$~%.'":*?<>{}|]/g, '-'));
             const fileStream = fs.createWriteStream( `../client/public/songs/${title}.mp3`); // => guardar en una carpeta zip 
             stream.pipe(fileStream);    
-            termino === true
         })
         .catch(err => {
           console.error('Error getting video info:', err);

@@ -7,10 +7,10 @@ const downloadPlaylist = async (req, res = response) => {
     
     const playlistSongs = await playlistToTxt(req.body.link, req.body.token);
     
-    for( const song of playlistSongs ){
-        let url = await getVideoURL(song);        
-        await downloadSongFromYT(url);
-    } 
+    // for( const song of playlistSongs ){
+    //     let url = await getVideoURL(song);        
+    //     await downloadSongFromYT(url);
+    // } 
 
     res.json({
         msg: 'Playlist Obtenida',
