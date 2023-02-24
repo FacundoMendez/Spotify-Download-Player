@@ -180,6 +180,14 @@
     transition: all .3s ease;
 }
 
+.iconDownload{
+    width: 5rem;
+    height: 5rem;
+    fill: white;
+    stroke: white;
+    position: relative;
+}
+
 
 
 /* slect tipe song */
