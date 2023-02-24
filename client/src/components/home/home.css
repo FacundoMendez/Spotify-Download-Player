@@ -165,6 +165,22 @@
 }
 
 
+.sendContact_main-loader{
+    opacity: 1;
+    text-transform: uppercase;
+    border: 2px solid #29d666;
+    border-radius: 8px;
+    font-size: 2.7rem;
+    letter-spacing: 1.5px ;
+    font-family: "ppF" ;
+    padding: 1rem 2rem;
+    position: absolute;
+    right: -10.5rem;
+    background-color: rgb(0, 0, 0);
+    transition: all .3s ease;
+}
+
+
 
 /* slect tipe song */
 

@@ -12,15 +12,18 @@ const Errors = ({getError}) => {
         opacity :1 ,
         visibility: "visible",
         duration: .5,
-        ease: Power4.easeInOut
+        right: "1%",
+        ease: Power4.easeIn
       })
       tl.to(".boxError",{
         delay: 3,
         opacity :0 ,
+        right: "-12%",
+        duration: .2,
+        ease: Power4.easeOut
+      })
+      tl.to(".boxError",{
         visibility: "hidden",
-        duration: .5,
-        ease: Power4.easeInOut
-
       })
     }
   }
