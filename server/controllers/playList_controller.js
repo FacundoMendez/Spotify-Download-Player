@@ -6,15 +6,21 @@ const { playlistToTxt, downloadSongFromYT, getVideoURL } = require('../service/p
 const downloadPlaylist = async (req, res = response) => {
     
     const playlistSongs = await playlistToTxt(req.body.link, req.body.token);
-    
-    // for( const song of playlistSongs ){
-    //     let url = await getVideoURL(song);        
-    //     await downloadSongFromYT(url);
-    // } 
+    const errors = [];
+
+    for( const song of playlistSongs ){
+        try{
+            let url = await getVideoURL(song);        
+            await downloadSongFromYT(url);
+        } catch ( err ){
+            errors.push(err, song);
+        }
+    } 
 
     res.json({
         msg: 'Playlist Obtenida',
-        playlistSongs
+        playlistSongs,
+        songsErrors : errors
     })
 }
 

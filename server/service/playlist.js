@@ -1,13 +1,13 @@
 
-const fs = require('fs');
-const axios = require('axios') 
-const ytdl = require('ytdl-core');
-const ytsr = require('yt-search')
+  const fs = require('fs');
+  const axios = require('axios')
+  const ytdl = require('ytdl-core');
+  const ytsr = require('yt-search')
 
-async function getAllPlaylistTracksSP(accessToken, playlistId) {
+  async function getAllPlaylistTracksSP(accessToken, playlistId) {
     let allTracks = [];
     let nextUrl = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
-  
+
     while (nextUrl) {
       const response = await axios.get(nextUrl, {
         headers: {
@@ -16,15 +16,15 @@ async function getAllPlaylistTracksSP(accessToken, playlistId) {
       });
       const data = response.data;
 
-  
+
       allTracks = [...allTracks, ...data.items];
       nextUrl = data.next;
     }
-  
-    return allTracks;
-}
 
-async function playlistToTxt(playlistLink, accessToken) {
+    return allTracks;
+  }
+
+  async function playlistToTxt(playlistLink, accessToken) {
 
     const playlist = playlistLink.split("/");
     let playlistSinParams = playlist[playlist.length - 1].split("?");
@@ -34,46 +34,58 @@ async function playlistToTxt(playlistLink, accessToken) {
 
     let songNames = [];
     for (let track of tracks) {
-        songNames.push(`${track.track.name} - ${track.track.artists[0].name}`);
+      songNames.push(`${track.track.name} - ${track.track.artists[0].name}`);
     }
 
     // const songsText = songNames.join("\n");
-    
+
     return songNames;
 
-}
+  }
 
-async function downloadSongFromYT(videoURL){       
-    
+  async function downloadSongFromYT(videoURL) {
+
     ytdl.getBasicInfo(videoURL)
-        .then(info => {
-            // console.log(videoURL);
-            const options = {filter: "audioonly", quality: "highestaudio"}
-            const stream = ytdl(videoURL, options);
-            const title = info.videoDetails.title.replace(/[&/#,+()$~%.'":*?<>{}|]/g, ' - ');
-            // console.log(title.replace(/[&/#,+()$~%.'":*?<>{}|]/g, '-'));
-            const fileStream = fs.createWriteStream( `../client/public/songs/${title}.mp3`); // => guardar en una carpeta zip 
-            stream.pipe(fileStream);    
-        })
-        .catch(err => {
-          console.error('Error getting video info:', err);
-        });
-  
-      
-}
+      .then(info => {
+        // console.log(videoURL);
+        const options = { filter: "audioonly", quality: "highestaudio" }
+        const stream = ytdl(videoURL, options);
+        const title = info.videoDetails.title.replace(/[&/#,+()$~%.'":*?<>{}|]/g, ' - ');
+        // console.log(title.replace(/[&/#,+()$~%.'":*?<>{}|]/g, '-'));
+        const fileStream = fs.createWriteStream(`../client/public/songs/${title}.mp3`); // => guardar en una carpeta zip 
+        stream.pipe(fileStream);
+      })
+      .catch(err => {
+        console.error('Error getting video info:', err);
+        return 'ytdl Error';
+      });
 
-async function getVideoURL( songName ){
 
-    const info = await ytsr( songName );
-    const url = info.all[0].url;
-    return url;
-    
-}
+  }
 
-    
-module.exports = {
+  async function getVideoURL(songName) {
+    try {
+      const info = await ytsr(songName);
+      const url = info.all[0].url;
+      return url;
+    } catch(err) {
+      return 'ytsr Error'
+    }
+
+    // ytsr(songName)
+    //   .then( info => {
+    //     const url = info.all[0].url;
+    //     return url;
+    //   })
+    //   .catch( err => {
+    //     return 'ytsr Error'
+    //   });
+  }
+
+
+  module.exports = {
     playlistToTxt, downloadSongFromYT, getVideoURL
-};
+  };
 
 
 
