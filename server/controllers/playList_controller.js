@@ -1,6 +1,11 @@
 
 const { response, request } = require('express');
-const { playlistToTxt, downloadSongFromYT, getVideoURL } = require('../service/playlist');
+const { 
+    playlistToTxt, 
+    downloadSongFromYT, 
+    getVideoURL, 
+    comprimirCarpeta, 
+    eliminarContenidoSongs } = require('../service/playlist');
 
 
 const downloadPlaylist = async (req, res = response) => {
@@ -16,6 +21,8 @@ const downloadPlaylist = async (req, res = response) => {
             errors.push(err, song);
         }
     } 
+
+    //comprimirCarpeta('songs', '../client/public/songs');
 
     res.json({
         msg: 'Playlist Obtenida',
@@ -46,7 +53,25 @@ const ytSearch = async (req, res = response) => {
     })
 }
 
+const comprimir = async (req, res = response) => {
+    console.log('controler before');
+    comprimirCarpeta('songs.zip');    
+    console.log('controler after');
+    
+    res.json({
+        msg: 'comprimido',        
+    })
+}
+
+
+const eliminarSongs = async (req, res = response) => {
+    eliminarContenidoSongs();
+    res.json({
+        msg: 'elimandooo',        
+    })
+}
+
 
 module.exports = {
-    downloadPlaylist, ytDownload, ytSearch
+    downloadPlaylist, ytDownload, ytSearch, comprimir, eliminarSongs
 };

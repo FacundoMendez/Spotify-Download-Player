@@ -66,7 +66,7 @@ const Download = () => {
   function descargarArchivo() {
       // Aquí debe proporcionar la URL del archivo que desea descargar.
 
-      const urlArchivo = "../../../../public/songs/music.zip";  // => url del archivo
+      const urlArchivo = "../../../../public/songs.zip";  // => url del archivo
       const nameArchivo = "Music-Download" // => nombre del archivo
     
       // Crear una solicitud HTTP para obtener el archivo.
